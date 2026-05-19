@@ -6,11 +6,9 @@
     <title>MMTech - Catálogo 3D</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Oculta a barra de rolagem do carrossel */
         .carousel-snap::-webkit-scrollbar { display: none; }
         .carousel-snap { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Cores customizadas injetadas no Tailwind */
         .bg-dark-main { background-color: #000000; }
         .bg-dark-card { background-color: #1e1f20; }
         .text-brand-blue { color: #35aad7; }
@@ -76,14 +74,14 @@
                         ? p.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
                         : p.preco;
 
-                    // Monta as imagens do carrossel
                     let imagensHtml = '';
                     p.imagens.forEach((imgUrl) => {
                         imagensHtml += `<div class="w-full h-64 flex-shrink-0 bg-zinc-900"><img src="${imgUrl}" class="w-full h-full object-cover" loading="lazy"></div>`;
                     });
 
-                    // TEXTO DO WHATSAPP: Cria a mensagem personalizada dinamicamente codificada para URL
-                    const textoMensagem = encodeURIComponent(`Olá! Tenho interesse no produto: *${nomeLimpo}* no valor de *${precoFormatado}*. Como faço para encomendar?`);
+                    // Mensagem do WhatsApp contendo o SKU para automação total da sua conferência
+                    const msgSku = p.sku ? ` (SKU: ${p.sku})` : '';
+                    const textoMensagem = encodeURIComponent(`Olá! Tenho interesse no produto: *${nomeLimpo}*${msgSku} no valor de *${precoFormatado}*. Como faço para encomendar?`);
                     const linkWhatsProduto = `https://wa.me/5511995847902?text=${textoMensagem}`;
 
                     let cardHtml = `
@@ -105,18 +103,20 @@
                             </div>
 
                             <div class="p-6 flex flex-col flex-grow">
-                                <h2 class="text-xl font-bold text-white mb-2 group-hover/card:text-brand-blue transition-colors duration-200">${nomeLimpo}</h2>
+                                <h2 class="text-xl font-bold text-white mb-0.5 group-hover/card:text-brand-blue transition-colors duration-200">${nomeLimpo}</h2>
+                                
+                                <!-- Exibição do SKU com design sutil -->
+                                ${p.sku ? `<span class="text-[10px] font-mono tracking-widest text-zinc-500 uppercase mb-3 block">Ref: ${p.sku}</span>` : '<div class="mb-3"></div>'}
+                                
                                 <p class="text-zinc-400 text-sm flex-grow mb-4 leading-relaxed">${p.descricao || 'Sem descrição disponível.'}</p>
                                 <div class="text-2xl font-black text-brand-blue mb-5">${precoFormatado}</div>
                                 
                                 <div class="flex flex-col gap-2 mt-auto">
                     `;
 
-                    // Links das Plataformas (Só aparecem se preenchidos na planilha)
                     if (p.link1) cardHtml += `<a href="${p.link1}" target="_blank" class="w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-medium py-2.5 px-4 rounded-xl transition-colors text-sm border border-zinc-700">Mercado Livre</a>`;
                     if (p.link2) cardHtml += `<a href="${p.link2}" target="_blank" class="w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-medium py-2.5 px-4 rounded-xl transition-colors text-sm border border-zinc-700">Shopee</a>`;
                     
-                    // Link 3 modificado: Se você NÃO preencher o Link 3 na planilha, ele assume AUTOMATICAMENTE o botão dinâmico do WhatsApp
                     if (p.link3) {
                         cardHtml += `<a href="${p.link3}" target="_blank" class="w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-medium py-2.5 px-4 rounded-xl transition-colors text-sm border border-zinc-700">Outra Loja</a>`;
                     } else {
