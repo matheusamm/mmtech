@@ -19,28 +19,34 @@
         .bg-whatsapp { background-color: #25D366; }
     </style>
 </head>
-<body class="bg-dark-main text-white font-sans min-h-screen p-6 md:p-12 relative">
+<body class="bg-dark-main text-white font-sans min-h-screen p-6 md:p-12 relative flex flex-col justify-between">
 
-    <!-- Header com Logo à Esquerda e Título Centralizado/Direita -->
-    <header class="max-w-6xl mx-auto mb-12 flex flex-col sm:flex-row items-center justify-between gap-6 border-b border-zinc-800 pb-6">
-        <div class="flex items-center gap-4 w-full sm:w-auto justify-center sm:justify-start">
-            <!-- LOGO: Substitua 'logo.png' pelo caminho da sua imagem se tiver no GitHub, ou uma URL pública -->
-            <img src="logo.png" alt="MMTech Logo" class="h-16 w-auto object-contain fallback-logo" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block'">
-            <span id="logo-text" class="text-2xl font-black tracking-wider text-brand-blue hidden">mmtech</span>
-        </div>
-        <div class="text-center sm:text-right">
-            <h1 class="text-3xl font-extrabold text-brand-blue tracking-tight">Catálogo de Produtos</h1>
-            <p class="text-zinc-400 text-sm mt-1">Impressão 3D com qualidade e Projetos sob demanda!</p>
-        </div>
-    </header>
+    <div>
+        <!-- Header com Logo à Esquerda e Título Centralizado/Direita -->
+        <header class="max-w-6xl mx-auto mb-12 flex flex-col sm:flex-row items-center justify-between gap-6 border-b border-zinc-800 pb-6">
+            <div class="flex items-center gap-4 w-full sm:w-auto justify-center sm:justify-start">
+                <!-- LOGO: Aumentado de h-16 para h-24 para maior destaque visual -->
+                <img src="logo.png" alt="MMTech Logo" class="h-24 w-auto object-contain fallback-logo" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block'">
+                <span id="logo-text" class="text-3xl font-black tracking-wider text-brand-blue hidden">mmtech</span>
+            </div>
+            <div class="text-center sm:text-right">
+                <h1 class="text-3xl font-extrabold text-brand-blue tracking-tight">Catálogo de Produtos</h1>
+                <p class="text-zinc-400 text-sm mt-1">Impressão 3D com qualidade e Projetos sob demanda!</p>
+            </div>
+        </header>
 
-    <!-- Grid Responsivo para os Cards -->
-    <main id="catalogo" class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        <!-- O JavaScript vai injetar os produtos aqui dentro -->
-    </main>
+        <!-- Grid Responsivo para os Cards -->
+        <main id="catalogo" class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <!-- O JavaScript vai injetar os produtos aqui dentro -->
+        </main>
+    </div>
+
+    <!-- Rodapé Customizado -->
+    <footer class="w-full max-w-6xl mx-auto border-t border-zinc-800 pt-6 mt-auto text-center text-zinc-500 text-xs tracking-wide">
+        <p>Desenvolvido por <span class="text-zinc-400 font-medium">Matheus Moraes</span> &bull; <a href="mailto:matheusmk@hotmail.com" class="hover:text-brand-blue transition-colors duration-200">matheusmk@hotmail.com</a></p>
+    </footer>
 
     <!-- Botão Flutuante do WhatsApp -->
-    <!-- Substitua o número 5515999999999 pelo seu número real com DDD -->
     <a href="https://wa.me/5511995847902?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+as+impress%C3%B5es+3D." 
        target="_blank" 
        rel="noopener noreferrer"
@@ -49,12 +55,10 @@
         <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.498 1.45 5.441 1.451 5.432 0 9.851-4.416 9.854-9.842.002-2.63-1.023-5.101-2.885-6.964C17.194 1.836 14.72 .812 12.01.812c-5.437 0-9.856 4.417-9.86 9.843-.001 1.945.504 3.843 1.465 5.435l-.974 3.556 3.644-.956zm12.39-7.142c.3-.15.1.45-.045.75-.145.3-.575.6-.985.675-.41.075-.925.075-2.43-.54-1.514-.618-2.484-2.153-2.56-2.253-.075-.1-.625-.825-.625-1.575 0-.75.375-1.125.525-1.275.15-.15.325-.225.475-.225.15 0 .3 0 .425.025.135.025.3.025.45.375.15.35.525 1.275.575 1.375.05.1.075.225 0 .375-.075.15-.15.25-.225.35-.075.1-.15.225-.05.4.375.625.85 1.15 1.438 1.55.513.348 1.05.513 1.55.6.15.025.275-.025.375-.125.125-.15.525-.6.675-.825.15-.225.3-.175.5-.1s1.275.6 1.5.712z"/>
         </svg>
-        <!-- Mini balão de texto interativo que aparece no hover -->
         <span class="absolute right-16 bg-zinc-800 text-xs font-medium px-2.5 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-md border border-zinc-700">Orçamentos no WhatsApp</span>
     </a>
 
     <script>
-        // COLOQUE SEU LINK DO APPS SCRIPT AQUI
         const API_URL = 'https://script.google.com/macros/s/AKfycbySmCL1-nTPg-OoHKIlzbyv57MSns9ph3svlaASlEBTaMLoYJf40VJ6Qzr8_vuZoNlR/exec';
 
         fetch(API_URL)
@@ -72,7 +76,6 @@
                         ? p.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
                         : p.preco;
 
-                    // Monta as imagens do carrossel
                     let imagensHtml = '';
                     p.imagens.forEach((imgUrl) => {
                         imagensHtml += `<div class="w-full h-64 flex-shrink-0 bg-zinc-900"><img src="${imgUrl}" class="w-full h-full object-cover" loading="lazy"></div>`;
@@ -81,13 +84,11 @@
                     let cardHtml = `
                         <div class="bg-dark-card rounded-2xl shadow-xl overflow-hidden border border-zinc-800 flex flex-col group/card hover:border-zinc-700 transition-all duration-300">
                             
-                            <!-- Imagem / Carrossel -->
                             <div class="relative group w-full h-64 overflow-hidden">
                                 <div id="carousel-${indexProduto}" class="carousel-snap w-full h-full flex overflow-x-auto scroll-smooth snap-x snap-mandatory">
                                     ${imagensHtml}
                                 </div>
                                 
-                                <!-- Setas do Carrossel -->
                                 ${p.imagens.length > 1 ? `
                                     <button onclick="moverCarrossel(${indexProduto}, -1)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 border border-zinc-700">
                                         &#10094;
@@ -98,14 +99,11 @@
                                 ` : ''}
                             </div>
 
-                            <!-- Dados do Produto -->
                             <div class="p-6 flex flex-col flex-grow">
-                                <!-- Título limpo sem underlines -->
                                 <h2 class="text-xl font-bold text-white mb-2 group-hover/card:text-brand-blue transition-colors duration-200">${p.produto.replace(/_/g, ' ')}</h2>
                                 <p class="text-zinc-400 text-sm flex-grow mb-4 leading-relaxed">${p.descricao || 'Sem descrição disponível.'}</p>
                                 <div class="text-2xl font-black text-brand-blue mb-5">${precoFormatado}</div>
                                 
-                                <!-- Botões de Plataformas -->
                                 <div class="flex flex-col gap-2 mt-auto">
                     `;
 
