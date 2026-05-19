@@ -67,7 +67,7 @@
                             </div>
 
                             <div class="p-6 flex flex-col flex-grow">
-                                <h2 class="text-xl font-bold text-slate-900 mb-2">${p.produto}</h2>
+                                <h2 class="text-xl font-bold text-slate-900 mb-2">${p.produto.replace(/_/g, ' ')}</h2>
                                 <p class="text-slate-500 text-sm flex-grow mb-4">${p.descricao || 'Sem descrição disponível.'}</p>
                                 <div class="text-2xl font-black text-emerald-600 mb-4">${precoFormatado}</div>
                                 
