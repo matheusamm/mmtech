@@ -74,7 +74,6 @@
                         ? p.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
                         : p.preco;
 
-                    // Otimização: h-64 alterado para h-80 para expandir o tamanho vertical do quadro
                     let imagensHtml = '';
                     p.imagens.forEach((imgUrl) => {
                         imagensHtml += `
@@ -90,17 +89,17 @@
                     let cardHtml = `
                         <div class="bg-dark-card rounded-2xl shadow-xl overflow-hidden border border-zinc-800 flex flex-col group/card hover:border-zinc-700 transition-all duration-300">
                             
-                            <!-- Otimização: h-64 alterado para h-80 também no container principal do carrossel -->
                             <div class="relative group w-full h-80 overflow-hidden bg-[#121214]">
                                 <div id="carousel-${indexProduto}" class="carousel-snap w-full h-full flex overflow-x-auto scroll-smooth snap-x snap-mandatory">
                                     ${imagensHtml}
                                 </div>
                                 
                                 ${p.imagens.length > 1 ? `
-                                    <button onclick="moverCarrossel(${indexProduto}, -1)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 border border-zinc-700 z-10">
+                                    <!-- Otimização: Removida a classe opacity-0 para manter as setas sempre visíveis -->
+                                    <button onclick="moverCarrossel(${indexProduto}, -1)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 border border-zinc-700 z-10 active:scale-95 shadow-lg">
                                         &#10094;
                                     </button>
-                                    <button onclick="moverCarrossel(${indexProduto}, 1)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 border border-zinc-700 z-10">
+                                    <button onclick="moverCarrossel(${indexProduto}, 1)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 border border-zinc-700 z-10 active:scale-95 shadow-lg">
                                         &#10095;
                                     </button>
                                 ` : ''}
