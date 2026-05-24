@@ -20,7 +20,7 @@
 <body class="bg-dark-main text-white font-sans min-h-screen p-6 md:p-12 relative flex flex-col justify-between">
 
     <div>
-        <header class="max-w-6xl mx-auto mb-12 flex flex-col sm:flex-row items-center justify-between gap-6 border-b border-zinc-800 pb-6">
+        <header class="max-w-6xl mx-auto mb-8 flex flex-col sm:flex-row items-center justify-between gap-6 border-b border-zinc-800 pb-6">
             <div class="flex items-center gap-4 w-full sm:w-auto justify-center sm:justify-start">
                 <img src="logo.png" alt="MMTech Logo" class="h-24 w-auto object-contain fallback-logo" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block'">
                 <span id="logo-text" class="text-3xl font-black tracking-wider text-brand-blue hidden">mmtech</span>
@@ -31,8 +31,21 @@
             </div>
         </header>
 
+        <div class="max-w-6xl mx-auto mb-12 flex flex-col sm:flex-row gap-4 items-center justify-between bg-dark-card p-4 rounded-2xl border border-zinc-800">
+            <div class="w-full sm:w-2/3 relative">
+                <input type="text" id="campo-busca" placeholder="Buscar por produto, descrição ou SKU..." 
+                       class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-brand-blue transition-colors">
+            </div>
+            <div class="w-full sm:w-1/3">
+                <select id="filtro-categoria" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-blue transition-colors appearance-none cursor-pointer">
+                    <option value="todos">Todas as Categorias</option>
+                </select>
+            </div>
+        </div>
+
         <main id="catalogo" class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            </main>
+            <p class="text-center text-zinc-500 col-span-full py-12">Carregando catálogo...</p>
+        </main>
     </div>
 
     <footer class="w-full max-w-6xl mx-auto border-t border-zinc-800 pt-6 mt-auto text-center text-zinc-500 text-xs tracking-wide">
@@ -44,97 +57,144 @@
        rel="noopener noreferrer"
        class="fixed bottom-6 right-6 bg-whatsapp hover:scale-110 transition-transform duration-200 p-4 rounded-full shadow-lg z-50 flex items-center justify-center group"
        title="Fale Conosco no WhatsApp">
-        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.498 1.45 5.441 1.451 5.432 0 9.851-4.416 9.854-9.842.002-2.63-1.023-5.101-2.885-6.964C17.194 1.836 14.72 .812 12.01.812c-5.437 0-9.856 4.417-9.86 9.843-.001 1.945.504 3.843 1.465 5.435l-.974 3.556 3.644-.956zm12.39-7.142c.3-.15.1.45-.045.75-.145.3-.575.6-.985.675-.41.075-.925.075-2.43-.54-1.514-.618-2.484-2.153-2.56-2.253-.075-.1-.625-.825-.625-1.575 0-.75.375-1.125.525-1.275.15-.15.325-.225.475-.225.15 0 .3 0 .425.025.135.025.3.025.45.375.15.35.525 1.275.575 1.375.05.1.075.225 0 .375-.075.15-.15.25-.225.35-.075.1-.15.225-.05.4.375.625.85 1.15 1.438 1.55.513.348 1.05.513 1.55.6.15.025.275-.025.375-.125.125-.15.525-.6.675-.825.15-.225.3-.175.5-.1s1.275.6 1.5.712z"/>
-        </svg>
+        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.498 1.45 5.441 1.451 5.432 0 9.851-4.416 9.854-9.842.002-2.63-1.023-5.101-2.885-6.964C17.194 1.836 14.72 .812 12.01.812c-5.437 0-9.856 4.417-9.86 9.843-.001 1.945.504 3.843 1.465 5.435l-.974 3.556 3.644-.956zm12.39-7.142c.3-.15.1.45-.045.75-.145.3-.575.6-.985.675-.41.075-.925.075-2.43-.54-1.514-.618-2.484-2.153-2.56-2.253-.075-.1-.625-.825-.625-1.575 0-.75.375-1.125.525-1.275.15-.15.325-.225.475-.225.15 0 .3 0 .425.025.135.025.3.025.45.375.15.35.525 1.275.575 1.375.05.1.075.225 0 .375-.075.15-.15.25-.225.35-.075.1-.15.225-.05.4.375.625.85 1.15 1.438 1.55.513.348 1.05.513 1.55.6.15.025.275-.025.375-.125.125-.15.525-.6.675-.825.15-.225.3-.175.5-.1s1.275.6 1.5.712z"/></svg>
         <span class="absolute right-16 bg-zinc-800 text-xs font-medium px-2.5 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-md border border-zinc-700">Orçamentos no WhatsApp</span>
     </a>
 
     <script>
         const API_URL = 'https://script.google.com/macros/s/AKfycbySmCL1-nTPg-OoHKIlzbyv57MSns9ph3svlaASlEBTaMLoYJf40VJ6Qzr8_vuZoNlR/exec';
+        let todosProdutos = []; // Cache local dos produtos para filtragem rápida
 
+        // Elementos da página
+        const container = document.getElementById('catalogo');
+        const campoBusca = document.getElementById('campo-busca');
+        const filtroCategoria = document.getElementById('filtro-categoria');
+
+        // Busca os dados da API
         fetch(API_URL)
             .then(response => response.json())
             .then(produtos => {
-                const container = document.getElementById('catalogo');
+                todosProdutos = produtos;
                 
-                if(produtos.length === 0) {
-                    container.innerHTML = '<p class="text-center text-zinc-500 col-span-full py-12">Nenhum produto cadastrado no momento.</p>';
-                    return;
-                }
-
-                produtos.forEach((p, indexProduto) => {
-                    const nomeLimpo = p.produto.replace(/_/g, ' ');
-                    const precoFormatado = typeof p.preco === 'number' 
-                        ? p.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
-                        : p.preco;
-
-                    let imagensHtml = '';
-                    p.imagens.forEach((imgUrl) => {
-                        imagensHtml += `
-                            <div class="w-full h-80 flex-shrink-0 bg-[#121214] flex items-center justify-center">
-                                <img src="${imgUrl}" class="w-full h-full object-contain" loading="lazy">
-                            </div>`;
-                    });
-
-                    const msgSku = p.sku ? ` (SKU: ${p.sku})` : '';
-                    const textoMensagem = encodeURIComponent(`Olá! Tenho interesse no produto: *${nomeLimpo}*${msgSku} no valor de *${precoFormatado}*. Como faço para encomendar?`);
-                    const linkWhatsProduto = `https://wa.me/5511995847902?text=${textoMensagem}`;
-
-                    let cardHtml = `
-                        <div class="bg-dark-card rounded-2xl shadow-xl overflow-hidden border border-zinc-800 flex flex-col group/card hover:border-zinc-700 transition-all duration-300">
-                            
-                            <div class="relative group w-full h-80 overflow-hidden bg-[#121214]">
-                                <div id="carousel-${indexProduto}" class="carousel-snap w-full h-full flex overflow-x-auto scroll-smooth snap-x snap-mandatory">
-                                    ${imagensHtml}
-                                </div>
-                                
-                                ${p.imagens.length > 1 ? `
-                                    <button onclick="moverCarrossel(${indexProduto}, -1)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 border border-zinc-700 z-10 active:scale-95 shadow-lg">
-                                        &#10094;
-                                    </button>
-                                    <button onclick="moverCarrossel(${indexProduto}, 1)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 border border-zinc-700 z-10 active:scale-95 shadow-lg">
-                                        &#10095;
-                                    </button>
-                                ` : ''}
-                            </div>
-
-                            <div class="p-6 flex flex-col flex-grow">
-                                <h2 class="text-xl font-bold text-white mb-0.5 group-hover/card:text-brand-blue transition-colors duration-200">${nomeLimpo}</h2>
-                                
-                                ${p.sku ? `<span class="text-[10px] font-mono tracking-widest text-zinc-500 uppercase mb-3 block">Ref: ${p.sku}</span>` : '<div class="mb-3"></div>'}
-                                
-                                <p class="text-zinc-400 text-sm flex-grow mb-4 leading-relaxed">${p.descricao || 'Sem descrição disponível.'}</p>
-                                <div class="text-2xl font-black text-brand-blue mb-5">${precoFormatado}</div>
-                                
-                                <div class="flex flex-col gap-2 mt-auto">
-                    `;
-
-                    if (p.link1) cardHtml += `<a href="${p.link1}" target="_blank" class="w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-medium py-2.5 px-4 rounded-xl transition-colors text-sm border border-zinc-700">Mercado Livre</a>`;
-                    if (p.link2) cardHtml += `<a href="${p.link2}" target="_blank" class="w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-medium py-2.5 px-4 rounded-xl transition-colors text-sm border border-zinc-700">Shopee</a>`;
-                    
-                    if (p.link3) {
-                        cardHtml += `<a href="${p.link3}" target="_blank" class="w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-medium py-2.5 px-4 rounded-xl transition-colors text-sm border border-zinc-700">Outra Loja</a>`;
-                    } else {
-                        cardHtml += `<a href="${linkWhatsProduto}" target="_blank" class="w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-4 rounded-xl transition-colors text-sm flex items-center justify-center gap-2">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.498 1.45 5.441 1.451 5.432 0 9.851-4.416 9.854-9.842.002-2.63-1.023-5.101-2.885-6.964C17.194 1.836 14.72 .812 12.01.812c-5.437 0-9.856 4.417-9.86 9.843-.001 1.945.504 3.843 1.465 5.435l-.974 3.556 3.644-.956zm12.39-7.142c.3-.15.1.45-.045.75-.145.3-.575.6-.985.675-.41.075-.925.075-2.43-.54-1.514-.618-2.484-2.153-2.56-2.253-.075-.1-.625-.825-.625-1.575 0-.75.375-1.125.525-1.275.15-.15.325-.225.475-.225.15 0 .3 0 .425.025.135.025.3.025.45.375.15.35.525 1.275.575 1.375.05.1.075.225 0 .375-.075.15-.15.25-.225.35-.075.1-.15.225-.05.4.375.625.85 1.15 1.438 1.55.513.348 1.05.513 1.55.6.15.025.275-.025.375-.125.125-.15.525-.6.675-.825.15-.225.3-.175.5-.1s1.275.6 1.5.712z"/></svg>
-                            Comprar via WhatsApp
-                        </a>`;
-                    }
-
-                    cardHtml += `
-                                </div>
-                            </div>
-                        </div>
-                    `;
-
-                    container.innerHTML += cardHtml;
+                // Mapeia e preenche o select com as categorias únicas encontradas na planilha
+                const categorias = [...new Set(produtos.map(p => p.categoria).filter(c => c))];
+                categorias.forEach(cat => {
+                    filtroCategoria.innerHTML += `<option value="${cat}">${cat}</option>`;
                 });
+
+                // Renderiza todos os produtos inicialmente
+                renderizarProdutos(todosProdutos);
+
+                // Ouvintes de eventos para busca e filtro
+                campoBusca.addEventListener('input', filtrarCatalogo);
+                filtroCategoria.addEventListener('change', filtrarCatalogo);
             })
             .catch(error => {
                 console.error(error);
-                document.getElementById('catalogo').innerHTML = '<p class="text-center text-red-400 col-span-full py-12">Erro ao carregar os dados do catálogo.</p>';
+                container.innerHTML = '<p class="text-center text-red-400 col-span-full py-12">Erro ao carregar os dados do catálogo.</p>';
             });
+
+        // Função principal de filtragem combinada (Busca + Categoria)
+        function filtrarCatalogo() {
+            const termoBusca = campoBusca.value.toLowerCase().trim();
+            const categoriaSelecionada = filtroCategoria.value;
+
+            const produtosFiltrados = todosProdutos.filter(p => {
+                const nomeLimpo = p.produto.replace(/_/g, ' ').toLowerCase();
+                const desc = (p.descricao || '').toLowerCase();
+                const sku = (p.sku || '').toLowerCase();
+                
+                // Valida o termo de busca (Procura no Nome, Descrição e SKU)
+                const bateBusca = nomeLimpo.includes(termoBusca) || desc.includes(termoBusca) || sku.includes(termoBusca);
+                // Valida a categoria
+                const bateCategoria = categoriaSelecionada === 'todos' || p.categoria === categoriaSelecionada;
+
+                return bateBusca && bateCategoria;
+            });
+
+            renderizarProdutos(produtosFiltrados);
+        }
+
+        // Função responsável por desenhar os cards na tela
+        function renderizarProdutos(produtos) {
+            container.innerHTML = '';
+            
+            if(produtos.length === 0) {
+                container.innerHTML = '<p class="text-center text-zinc-500 col-span-full py-12">Nenhum produto corresponde aos filtros aplicados.</p>';
+                return;
+            }
+
+            produtos.forEach((p, indexProduto) => {
+                const nomeLimpo = p.produto.replace(/_/g, ' ');
+                const precoFormatado = typeof p.preco === 'number' 
+                    ? p.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
+                    : p.preco;
+
+                let imagensHtml = '';
+                p.imagens.forEach((imgUrl) => {
+                    imagensHtml += `
+                        <div class="w-full h-80 flex-shrink-0 bg-[#121214] flex items-center justify-center">
+                            <img src="${imgUrl}" class="w-full h-full object-contain" loading="lazy">
+                        </div>`;
+                });
+
+                const msgSku = p.sku ? ` (SKU: ${p.sku})` : '';
+                const textoMensagem = encodeURIComponent(`Olá! Tenho interesse no produto: *${nomeLimpo}*${msgSku} no valor de *${precoFormatado}*. Como faço para encomendar?`);
+                const linkWhatsProduto = `https://wa.me/5511995847902?text=${textoMensagem}`;
+
+                let cardHtml = `
+                    <div class="bg-dark-card rounded-2xl shadow-xl overflow-hidden border border-zinc-800 flex flex-col group/card hover:border-zinc-700 transition-all duration-300">
+                        
+                        <div class="relative group w-full h-80 overflow-hidden bg-[#121214]">
+                            <div id="carousel-${indexProduto}" class="carousel-snap w-full h-full flex overflow-x-auto scroll-smooth snap-x snap-mandatory">
+                                ${imagensHtml}
+                            </div>
+                            
+                            ${p.imagens.length > 1 ? `
+                                <button onclick="moverCarrossel(${indexProduto}, -1)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 border border-zinc-700 z-10 active:scale-95 shadow-lg">
+                                    &#10094;
+                                </button>
+                                <button onclick="moverCarrossel(${indexProduto}, 1)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 border border-zinc-700 z-10 active:scale-95 shadow-lg">
+                                    &#10095;
+                                </button>
+                            ` : ''}
+                        </div>
+
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start gap-2 mb-1.5">
+                                <h2 class="text-xl font-bold text-white group-hover/card:text-brand-blue transition-colors duration-200">${nomeLimpo}</h2>
+                                ${p.categoria ? `<span class="bg-zinc-800 text-zinc-400 text-[10px] font-semibold px-2.5 py-0.5 rounded-full border border-zinc-700 whitespace-nowrap">${p.categoria}</span>` : ''}
+                            </div>
+                            
+                            ${p.sku ? `<span class="text-[10px] font-mono tracking-widest text-zinc-500 uppercase mb-3 block">Ref: ${p.sku}</span>` : '<div class="mb-3"></div>'}
+                            
+                            <p class="text-zinc-400 text-sm flex-grow mb-4 leading-relaxed">${p.descricao || 'Sem descrição disponível.'}</p>
+                            <div class="text-2xl font-black text-brand-blue mb-5">${precoFormatado}</div>
+                            
+                            <div class="flex flex-col gap-2 mt-auto">
+                `;
+
+                if (p.link1) cardHtml += `<a href="${p.link1}" target="_blank" class="w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-medium py-2.5 px-4 rounded-xl transition-colors text-sm border border-zinc-700">Mercado Livre</a>`;
+                if (p.link2) cardHtml += `<a href="${p.link2}" target="_blank" class="w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-medium py-2.5 px-4 rounded-xl transition-colors text-sm border border-zinc-700">Shopee</a>`;
+                
+                if (p.link3) {
+                    cardHtml += `<a href="${p.link3}" target="_blank" class="w-full text-center bg-zinc-800 hover:bg-zinc-700 text-white font-medium py-2.5 px-4 rounded-xl transition-colors text-sm border border-zinc-700">Outra Loja</a>`;
+                } else {
+                    cardHtml += `<a href="${linkWhatsProduto}" target="_blank" class="w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-4 rounded-xl transition-colors text-sm flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.498 1.45 5.441 1.451 5.432 0 9.851-4.416 9.854-9.842.002-2.63-1.023-5.101-2.885-6.964C17.194 1.836 14.72 .812 12.01.812c-5.437 0-9.856 4.417-9.86 9.843-.001 1.945.504 3.843 1.465 5.435l-.974 3.556 3.644-.956zm12.39-7.142c.3-.15.1.45-.045.75-.145.3-.575.6-.985.675-.41.075-.925.075-2.43-.54-1.514-.618-2.484-2.153-2.56-2.253-.075-.1-.625-.825-.625-1.575 0-.75.375-1.125.525-1.275.15-.15.325-.225.475-.225.15 0 .3 0 .425.025.135.025.3.025.45.375.15.35.525 1.275.575 1.375.05.1.075.225 0 .375-.075.15-.15.25-.225.35-.075.1-.15.225-.05.4.375.625.85 1.15 1.438 1.55.513.348 1.05.513 1.55.6.15.025.275-.025.375-.125.125-.15.525-.6.675-.825.15-.225.3-.175.5-.1s1.275.6 1.5.712z"/></svg>
+                        Comprar via WhatsApp
+                    </a>`;
+                }
+
+                cardHtml += `
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.innerHTML += cardHtml;
+            });
+        }
 
         function moverCarrossel(id, direcao) {
             const carrossel = document.getElementById(`carousel-${id}`);
