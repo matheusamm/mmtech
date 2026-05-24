@@ -69,12 +69,6 @@
                         ? p.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
                         : p.preco;
 
-                    // OTIMIZAÇÃO: O front-end agora força a ordenação correta das URLs recebidas
-                    p.imagens.sort((urlA, urlB) => {
-                        // Extrai o ID ou parâmetros finais do link para desempatar alfabeticamente
-                        return urlA.localeCompare(urlB, undefined, { numeric: true, sensitivity: 'base' });
-                    });
-
                     let imagensHtml = '';
                     p.imagens.forEach((imgUrl) => {
                         imagensHtml += `
