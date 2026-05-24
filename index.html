@@ -20,7 +20,6 @@
 <body class="bg-dark-main text-white font-sans min-h-screen p-6 md:p-12 relative flex flex-col justify-between">
 
     <div>
-        <!-- Header com Logo à Esquerda e Título Centralizado/Direita -->
         <header class="max-w-6xl mx-auto mb-12 flex flex-col sm:flex-row items-center justify-between gap-6 border-b border-zinc-800 pb-6">
             <div class="flex items-center gap-4 w-full sm:w-auto justify-center sm:justify-start">
                 <img src="logo.png" alt="MMTech Logo" class="h-24 w-auto object-contain fallback-logo" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block'">
@@ -32,18 +31,14 @@
             </div>
         </header>
 
-        <!-- Grid Responsivo para os Cards -->
         <main id="catalogo" class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            <!-- O JavaScript vai injetar os produtos aqui dentro -->
-        </main>
+            </main>
     </div>
 
-    <!-- Rodapé Customizado -->
     <footer class="w-full max-w-6xl mx-auto border-t border-zinc-800 pt-6 mt-auto text-center text-zinc-500 text-xs tracking-wide">
         <p>Desenvolvido por <span class="text-zinc-400 font-medium">Matheus Moraes</span> &bull; <a href="mailto:matheusmk@hotmail.com" class="hover:text-brand-blue transition-colors duration-200">matheusmk@hotmail.com</a></p>
     </footer>
 
-    <!-- Botão Flutuante Geral do WhatsApp -->
     <a href="https://wa.me/5511995847902?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+as+impress%C3%B5es+3D." 
        target="_blank" 
        rel="noopener noreferrer"
@@ -74,6 +69,12 @@
                         ? p.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
                         : p.preco;
 
+                    // OTIMIZAÇÃO: O front-end agora força a ordenação correta das URLs recebidas
+                    p.imagens.sort((urlA, urlB) => {
+                        // Extrai o ID ou parâmetros finais do link para desempatar alfabeticamente
+                        return urlA.localeCompare(urlB, undefined, { numeric: true, sensitivity: 'base' });
+                    });
+
                     let imagensHtml = '';
                     p.imagens.forEach((imgUrl) => {
                         imagensHtml += `
@@ -95,7 +96,6 @@
                                 </div>
                                 
                                 ${p.imagens.length > 1 ? `
-                                    <!-- Otimização: Removida a classe opacity-0 para manter as setas sempre visíveis -->
                                     <button onclick="moverCarrossel(${indexProduto}, -1)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 border border-zinc-700 z-10 active:scale-95 shadow-lg">
                                         &#10094;
                                     </button>
